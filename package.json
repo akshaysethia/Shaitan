@@ -19,7 +19,6 @@
     "render": "^0.1.4"
   },
   "devDependencies": {
-    "eslint": "^5.2.0",
     "eslint-config-google": "^0.9.1"
   }
 }
