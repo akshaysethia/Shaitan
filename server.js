@@ -4,8 +4,14 @@ const bodyParser = require('body-parser'); //read data from front end
 const mongoose = require('mongoose'); //lib for obj relation mapper - mongo db communicator
 const hbs = require('hbs'); //temlating engine easy
 const expressHbs = require('express-handlebars'); //extenstion to hbs
+const config = require('./config/secret'); //this connects the main user database using the secret.js
 
 const app = express(); //app instance of express library to construct urls
+
+mongoose.connect(config.database, function(err) {
+    if (err) console.log(err);
+    console.log(`Connected to the Database`);
+});
 
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' })); //extenstions to be handlebars 
 app.set('view engine', 'hbs'); //set the sort of templating engine
