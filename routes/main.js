@@ -8,13 +8,13 @@ router.get('/', (req, res, next) => {
 //this is used to create the new user
 router.get('/create-new-user', (req, res ,next)=>{
     var user = new User();
-    user.email = "luckyboi98@gmail.com"
+    user.email = "balbalbachagaya@gmail.com"
     user.name = "Shree";
     user.password = "Hello";
     user.save(function(err) {
-        if (err)return next(err);
+        if (err) return next(err);
         res.json("Successfully Created");
-    })
-})
+    });
+});
 
 module.exports = router; //exports this url so that server.js can use it properly

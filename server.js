@@ -9,10 +9,10 @@ const config = require('./config/secret'); //this connects the main user databas
 const app = express(); //app instance of express library to construct urls
 
 mongoose.connect(config.database, function(err) {
-    //to see if this is connected to the mongoose database or not
+    
     if (err) console.log(err);
     console.log("Connected to the Database");
-});
+},{ useNewUrlParser: true });
 
 app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' })); //extenstions to be handlebars 
 app.set('view engine', 'hbs'); //set the sort of templating engine
