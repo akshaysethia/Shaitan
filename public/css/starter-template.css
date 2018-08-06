@@ -1,5 +1,7 @@
 body {
     padding-top: 50px;
+    background: black;
+    color: whitesmoke;
 }
 .starter-template {
     padding: 40px 15px;
