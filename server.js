@@ -4,6 +4,9 @@ const bodyParser = require('body-parser'); //read data from front end
 const mongoose = require('mongoose'); //lib for obj relation mapper - mongo db communicator
 const hbs = require('hbs'); //temlating engine easy
 const expressHbs = require('express-handlebars'); //extenstion to hbs
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session); //conect to the mongo store
+const flash = require('express-flash'); //add the flash libraries
 const config = require('./config/secret'); //this connects the main user database using the secret.js
 
 const app = express(); //app instance of express library to construct urls
@@ -20,7 +23,14 @@ app.use(express.static(__dirname + '/public')); //directory of the folder-to acc
 app.use(morgan('dev')); //used to lock all the requests
 app.use(bodyParser.json()); //used to read json data types
 app.use(bodyParser.urlencoded({ extended: true})); //to read all the unicode type of data
-
+app.use(({
+    resave: true,
+    saveUninitialized: true,
+    secret: config.secret,
+    store: new MongoStore({ config.database, autoreconnect: true});
+}));
+app.use(flash());
+//the tp thingy helps us to connect to the mongo store
 const  mainRoutes = require('./routes/main'); //requires a local file for the landing page
 
 app.use(mainRoutes); //this makes the middle wire as the part of the previous line

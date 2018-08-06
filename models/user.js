@@ -40,4 +40,6 @@ UserSchema.methords.tavatar = function(size) {
 UserSchema.methords.comaperPassword = function(password) {
     return bcrypt.compareSync(password, this.password); //this compares the user entered password with the stored data base password   
 }
+
+
 module.exports = mongoose.model('User',UserSchema); //helps to export schemas so as to use it in different pages
