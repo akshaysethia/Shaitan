@@ -23,11 +23,11 @@ app.use(express.static(__dirname + '/public')); //directory of the folder-to acc
 app.use(morgan('dev')); //used to lock all the requests
 app.use(bodyParser.json()); //used to read json data types
 app.use(bodyParser.urlencoded({ extended: true})); //to read all the unicode type of data
-app.use(({
+app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: config.secret,
-    store: new MongoStore({ config.database, autoreconnect: true});
+    store: new MongoStore({ config.database, autoReconnect: true });
 }));
 app.use(flash());
 //the tp thingy helps us to connect to the mongo store
