@@ -1,3 +1,3 @@
 module.exports = {
-    database: 'mongodb://akshay:aks1234@ds111192.mlab.com:11192/shaitan'
+    database: 'mongodb://akshaysethia:Acerf900!@ds113442.mlab.com:13442/clanshophub'
 };
