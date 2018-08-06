@@ -27,7 +27,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: config.secret,
-    store: new MongoStore({ config.database, autoReconnect: true });
+    store: new MongoStore({ url: config.database, autoReconnect: true })
 }));
 app.use(flash());
 //the tp thingy helps us to connect to the mongo store
