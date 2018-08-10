@@ -2,7 +2,7 @@ const router = require('express').Router(); //if we want to be the prefix to be 
 const User = require('../models/user'); 
 
 router.route('/signup')
-    .get((req, res ,next) => { //get the input
+    .get((req, res, next) => { //get the input
         res.render('accounts/signup', {message: req.flash('errors') });
     })
     .post((req, res, next) => { //gets us the persons login details
@@ -17,10 +17,10 @@ router.route('/signup')
                 user.photo = user.gravatar();
                 user.password = req.body.password;
                 user.save(function(err) {
-                    //req.logIn(user, function(err) {
-                        if(err) return next(err);
-                        res.redirect('/');
-                    //});
+                //req.logIn(user, function(err) {
+                    if(err) return next(err);
+                    res.redirect('/');
+                //});
                 });
             }
         });
