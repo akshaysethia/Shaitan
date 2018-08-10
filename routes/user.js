@@ -1,4 +1,6 @@
 const router = require('express').Router(); //if we want to be the prefix to be the user
+const passport = require(passport);
+const passportConfig = require('../config/passport');
 const User = require('../models/user'); 
 
 router.route('/signup')
@@ -25,5 +27,15 @@ router.route('/signup')
             }
         });
     });
+
+    router.route('/login')
+        .get((req, res, next) => {
+            if (req.user) res.redirect('/');
+            res.render('accounts/login', {message: req.flash('loginMessage')});
+        })
+
+        .post((req, res, next) => {
+
+        })
 
     module.exports = router; //this helps us to join to the server.s page so as to export thses files 
