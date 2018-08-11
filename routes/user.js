@@ -19,10 +19,10 @@ router.route('/signup')
                 user.photo = user.gravatar();
                 user.password = req.body.password;
                 user.save(function(err) {
-                //req.logIn(user, function(err) {
+                req.logIn(user, function(err) {
                     if(err) return next(err);
                     res.redirect('/');
-                //});
+                });
                 });
             }
         });
