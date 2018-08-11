@@ -2,7 +2,11 @@ const router = require('express').Router(); //sub url of the main url, behaves t
 const User = require('../models/user'); //to create new users we need to create its variable , requires user schema
 
 router.get('/', (req, res, next) => {
-    res.render('main/landing'); //this is basically a get request and whatever comes to it it will respond with the landing page
+    if(req.user) {
+        res.render('main/home');
+    } else {
+        res.render('main/landing'); //this is basically a get request and whatever comes to it it will respond with the landing page
+    }
 });
 
 //this is used to create the new user

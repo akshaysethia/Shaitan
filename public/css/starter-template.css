@@ -1,6 +1,5 @@
 body {
-    /* padding-top: 50px; */
-    background: black;
+    background-image: url("pic2.jpg");
     color: whitesmoke;
 }
 .starter-template {
@@ -13,9 +12,21 @@ body {
     font-size: 2em;
 }
 .navbar {
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid whitesmoke;
 }
 .container-fluid {
     margin: auto;
     margin-top: 2em;
+}
+.navbar-nav {
+    margin-right: 3em;
+}
+.nav-link {
+    font-size: 1.4em;
+}
+a.nav-link {
+    color: whitesmoke;
+}
+a.nav-link:hover {
+    color: tomato;
 }
