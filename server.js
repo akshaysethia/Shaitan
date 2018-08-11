@@ -35,6 +35,10 @@ app.use(flash());
 app.use(cookieParser()); //passport is both dependent on cookie and session
 app.use(passport.initialize()); //here we initialize the passport strtegy
 app.use(passport.session()); //similar to express-flash
+app.use(function(req, res, next) {
+    res.locals.user = req.user; //this helps us to access user in any page we want to 
+    next();
+})
 
 //the tp thingy helps us to connect to the mongo store
 const  mainRoutes = require('./routes/main'); //requires a local file for the landing page

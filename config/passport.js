@@ -8,7 +8,7 @@ passport.serializeUser(function(user, done) { //in this part we store te users i
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, user) { //retrive the stored id in the user session
+passport.deserializeUser(function(id, done) { //retrive the stored id in the user session
     User.findById(id, function(err, user) {
         done(err, user);
     });
