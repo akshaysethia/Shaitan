@@ -31,3 +31,11 @@ a.nav-link {
 a.nav-link:hover {
     color: tomato;
 }
+h1 {
+    color: black;
+}
+
+p {
+    color: black;
+    font-size: 1.4em;
+}
