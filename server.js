@@ -49,7 +49,7 @@ const  userRoutes = require('./routes/user'); //requires a local file for the si
 app.use(mainRoutes); //this makes the middle wire as the part of the previous line
 app.use(userRoutes); //this makes the middle wire part for the user file . helps in making the use of tht thingy
 
-app.listen(3030, (err) => {
+http.listen(3030, (err) => {
     if(err)
         console.log(err);
     console.log(`Running on port ${3030}`);
