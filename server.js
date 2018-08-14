@@ -8,12 +8,15 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session); //conect to the mongo store
 const flash = require('express-flash'); //add the flash libraries , this is used to add error and user messages
 const passport = require('passport'); //type of authenticator
+const passportSocketIo = require('passport.socketio');
 const cookieParser= require('cookie-parser'); //this lib is used by passport
 const config = require('./config/secret'); //this connects the main user database using the secret.js
 
 const app = express(); //app instance of express library to construct urls
-const http = require('http').Server(app); //this is a way of making a object for the user and server
+const http = require('http').Server(app); //this is a way of making a object for the user and server helps to communicate between pages
 const io = require('socket.io')(http); //connection b/w client soide and server side 
+
+const sessionStore = new MongoStore({ url: config.database, autoReconnect: true })
 
 mongoose.connect(config.database, function(err) {
     
@@ -31,7 +34,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: config.secret,
-    store: new MongoStore({ url: config.database, autoReconnect: true })
+    store: sessionStore
 }));// session can only remember for small amt of time and the mongo store is used to store the session in its memory
 app.use(flash());
 app.use(cookieParser()); //passport is both dependent on cookie and session
@@ -41,6 +44,27 @@ app.use(function(req, res, next) {
     res.locals.user = req.user; //this helps us to access user in any page we want to 
     next();
 })
+
+io.use(passportSocketIo.authorize({
+    cookieParser: cookieParser,
+    key: 'connect.sid,',
+    secret: config.secret,
+    store: sessionStore,
+    success: onAuthorizeSuccess,
+    fail: onAuthorizeFail
+}));
+
+function onAuthorizeSuccess(data, accept) {
+    console.log("Successful Connection");
+    accept();
+}
+
+function onAuthorizeFail(data, accepmessage, error, accept) {
+    console.log("Unsuccessful Connection");
+    if (error) accept(new Error(message));
+}
+
+require('./realtime/io')(io); //if we are using the entire file (acts like a function)
 
 //the tp thingy helps us to connect to the mongo store
 const  mainRoutes = require('./routes/main'); //requires a local file for the landing page
