@@ -12,6 +12,8 @@ const cookieParser= require('cookie-parser'); //this lib is used by passport
 const config = require('./config/secret'); //this connects the main user database using the secret.js
 
 const app = express(); //app instance of express library to construct urls
+const http = require('http').Server(app); //this is a way of making a object for the user and server
+const io = require('socket.io')(http); //connection b/w client soide and server side 
 
 mongoose.connect(config.database, function(err) {
     

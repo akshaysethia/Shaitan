@@ -39,3 +39,7 @@ p {
     color: black;
     font-size: 1.4em;
 }
+
+h1 {
+    font-weight: 500px;
+}

@@ -30,7 +30,8 @@
     "passport-local": "^1.0.0",
     "password": "^0.1.1",
     "popper.js": "^1.14.4",
-    "render": "^0.1.4"
+    "render": "^0.1.4",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
