@@ -16,7 +16,6 @@
     "connect": "^3.6.6",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "^1.4.3",
-    "eslint": "^5.3.0",
     "express": "^4.16.3",
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
