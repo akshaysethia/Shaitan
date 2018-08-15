@@ -59,8 +59,8 @@ function onAuthorizeSuccess(data, accept) {
     accept();
 }
 
-function onAuthorizeFail(data, accepmessage, error, accept) {
-    console.log("Unsuccessful Connection");
+function onAuthorizeFail(data, message, error, accept) {
+    console.log("Failed Connection");
     if (error) accept(new Error(message));
 }
 

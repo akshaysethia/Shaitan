@@ -3,5 +3,9 @@ module.exports = function(io) {
         console.log("Connected");
         var user = socket.request.user;
         console.log(user.name);
+
+        socket.io('tweet', (data) => {
+            console.log(data);
+        });
     });
 }
