@@ -4,8 +4,8 @@ module.exports = function(io) {
         var user = socket.request.user;
         console.log(user.name);
 
-        socket.io('tweet', (data) => {
-            console.log(data);
+        socket.on('tweet', (data) => {
+            io.emit('incomingTweets', { data, user });
         });
     });
 }

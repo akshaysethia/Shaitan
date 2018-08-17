@@ -7,4 +7,8 @@ $(function() {
         $('#tweet').val('');
         return false;
     });
+
+    socket.on('incomingTweets', function(data) {
+        console.log(data);
+    });
 });
