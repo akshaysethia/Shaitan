@@ -47,7 +47,7 @@ app.use(function(req, res, next) {
 
 io.use(passportSocketIo.authorize({
     cookieParser: cookieParser,
-    key: 'connect.sid,',
+    key: 'connect.sid',
     secret: config.secret,
     store: sessionStore,
     success: onAuthorizeSuccess,
