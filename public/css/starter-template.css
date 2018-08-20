@@ -44,5 +44,7 @@ h1 {
     font-weight: 500px;
 }
 
-
-
+h4 {
+    color: black;
+    font-weight: bolder;
+}
