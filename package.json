@@ -1,5 +1,5 @@
 {
-  "name": "mp1",
+  "name": "shop-clan",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,6 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
@@ -25,6 +24,7 @@
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.6",
     "morgan": "^1.9.0",
+    "nodemon": "^1.18.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport.socket.io": "0.0.0",
@@ -36,5 +36,14 @@
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshaysethia/Shop-Clan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akshaysethia/Shop-Clan/issues"
+  },
+  "homepage": "https://github.com/akshaysethia/Shop-Clan#readme",
+  "description": ""
 }
