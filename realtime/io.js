@@ -1,3 +1,6 @@
+const async = require('async'); //used to save the tweets and data to the database
+const Tweet = require('../models/tweet'); //to get the tweet
+const User = require('../models/user'); //to get the user 
 module.exports = function(io) {
     io.on('connection', function(socket) {
         console.log("Connected");
@@ -5,7 +8,32 @@ module.exports = function(io) {
         console.log(user.name);
 
         socket.on('tweet', (data) => {
-            io.emit('incomingTweets', { data, user });
+            async.parallel({
+                function(callback) {
+                    io.emit('incomingTweets', {data, user });
+                },
+                function(callback) {
+                    async.waterfall({
+                        function(callback) {
+                            var tweet = new Tweet();
+                            tweet.content = data.content;
+                            tweet.owner = data.user.id;
+                            tweet.save(function(err) {
+                                callback(err, tweet);
+                            })
+                        },
+                        function(tweet, callback) {
+                            User.update( {
+                                _id: user.id
+                            }, {
+                                $push: {tweets: {tweet: tweet._id }},
+                            }, function(err, count) {
+                                callback(err, count);
+                            });
+                        }
+                    });
+                }
+            });
         });
     });
 }
