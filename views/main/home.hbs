@@ -1,21 +1,21 @@
 <br><br><br><br><br><br><br><br><br>
 <div class="starter-template">
     <p class="lead" style="font-size: 2.5em">Lets Type</p>
-    <div class="col-lg-6 container-fluid text-center">
-        <form id="sendTweet">
-            <input type="text" class="form-control" id="tweet">
-            <br><br>
-            <button type="button" class="btn btn-outline-primary">Tweet</button>
-            <br><br>
-        </form>
-        <div id="tweets">
-            <div class="media">
-                <div class="media-left">
-                    <a href="#"><img class="media-object" src="{{ user.photo }}" /> </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{ user.name }}</h4>
-                </div>
+</div>
+<div class="col-lg-6 container-fluid text-center">
+    <form id="sendTweet">
+        <input type="text" class="form-control" id="tweet">
+        <br><br>
+        <button class="btn btn-outline-primary">Tweet</button>
+        <br><br>
+    </form>
+    <div id="tweets">
+        <div class="media">
+            <div class="media-left">
+                <a href="#"><img class="media-object" src="{{ user.photo }}" /> </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{ user.name }}</h4>
             </div>
         </div>
     </div>
