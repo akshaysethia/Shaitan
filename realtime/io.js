@@ -18,7 +18,7 @@ module.exports = function(io) {
                         function(callback) {
                             var tweet = new Tweet();
                             tweet.content = data.content;
-                            tweet.owner = user.id;
+                            tweet.owner = user._id;
                             tweet.save(function(err) {
                                 callback(err, tweet);
                             })
