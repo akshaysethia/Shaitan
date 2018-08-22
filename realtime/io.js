@@ -8,12 +8,12 @@ module.exports = function(io) {
         console.log(user.name);
 
         socket.on('tweet', (data) => {
-            async.parallel({
+            async.parallel([
                 function(callback) {
                     io.emit('incomingTweets', { data, user });
                 },
                 function(callback) {
-                    async.waterfall({
+                    async.waterfall([
                         function(callback) {
                             var tweet = new Tweet();
                             tweet.content = data.content;
@@ -32,9 +32,9 @@ module.exports = function(io) {
                             }
                             );
                         }
-                    });
+                    ]);
                 }
-            });
+            ]);
         });
     });
 }
