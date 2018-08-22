@@ -8,7 +8,6 @@ module.exports = function(io) {
         console.log(user.name);
 
         socket.on('tweet', (data) => {
-            console.log(data); //to show the tweet on cmd or console
             async.parallel({
                 function(callback) {
                     io.emit('incomingTweets', { data, user });
