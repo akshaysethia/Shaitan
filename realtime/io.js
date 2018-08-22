@@ -8,9 +8,10 @@ module.exports = function(io) {
         console.log(user.name);
 
         socket.on('tweet', (data) => {
+            console.log(data); //to show the tweet on cmd or console
             async.parallel({
                 function(callback) {
-                    io.emit('incomingTweets', {data, user });
+                    io.emit('incomingTweets', { data, user });
                 },
                 function(callback) {
                     async.waterfall({
@@ -29,7 +30,8 @@ module.exports = function(io) {
                                 $push: {tweets: {tweet: tweet._id }},
                             }, function(err, count) {
                                 callback(err, count);
-                            });
+                            }
+                            );
                         }
                     });
                 }
