@@ -38,9 +38,9 @@ UserSchema.pre('save' ,function(next) {
 
 UserSchema.methods.gravatar = function(size) {
     if(!size) size = 200; //if the size of the pic is not set then by default it will be set to 200px
-    if(!this.email) return 'https://gravatar.com/avatar/?s=${size}&d=retro'; //if email does not exist then return the pic via the given url
-    const md5 = crypto.createHash('md5').update(this.email).digest('hex'); //if email exists we encrypt this email to the pic
-    return 'https://gravatar.com/avatar/${md5}?s=${size}&d=retro'; //this specific email belongs to this photo
+    if(!this.email) return 'https://gravatar.com/avatar/?s=${size}&d=wavatar'; //if email does not exist then return the pic via the given url
+    const md5 = crypto.createHash('md5').update(this.email).digest("hex"); //if email exists we encrypt this email to the pic
+    return 'https://gravatar.com/avatar/${md5}${md5}?s=${size}&d=wavatar'; //this specific email belongs to this photo
 };
 
 UserSchema.methods.comparePassword = function(password) {

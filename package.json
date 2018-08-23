@@ -20,6 +20,7 @@
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "gravatar": "^1.6.0",
     "hbs": "^4.0.1",
     "jquery": "^3.3.1",
     "mongodb": "^3.1.1",
