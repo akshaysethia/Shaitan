@@ -22,12 +22,20 @@ $(function() {
             type: 'POST',
             url: "/unfollow/" + user_id,
             success: function(data) {
-                $('#unfollow').removeClass('btn-primary').addClass('btn-default')
+                $('#unfollow').removeClass('btn-primary btn-danger').addClass('btn-default')
                  .html('Follow').attr('id', 'follow')
             },
             error: function(data) {
                 console.log(data);
             }
         });
-     });
+    });
+
+    $(document).on('mouseenter', '#unfollow', function(e) {
+        $(this).removeClass('btn-primary').addClass('btn-danger').html('Unfollow'); 
+    });
+
+    $(document).on('mouseleave', '#unfollow', function(e) {
+        $(this).removeClass('btn-danger').addClass('btn-primary').html('following'); 
+    });
 })
