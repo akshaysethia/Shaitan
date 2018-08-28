@@ -32,10 +32,85 @@ router.get('/user/:id', (req, res, next) => {
                 .populate('following')
                 .populate('followers')
                 .exec(function(err, user) {
-                    res.render('main/user', { foundUser: user, tweets: tweets });
+                    var follower = user.followers.some(function(friend) {
+                        return friend.equal(req.user._id);
+                    });
+                    var currentuser;
+                    if (req.user._id.equals(user.id)) {
+                        currentUser = true;
+                    } else {
+                        currentUser = false;
+                    }
+                    res.render('main/user', { foundUser: user, tweets: tweets, currentUser: currentUser, follower: follower });
                 });
         }
     ]);
+});
+
+router.post('/follow/:id', (req, res, next) => {
+    async.parallel([
+        function(callback) {
+            User.update(
+                {
+                    _id: req.user._id,
+                    following: { $ne: req.params.id }
+                },
+                {
+                    $push: {following: req.params.id }
+                }, function(err, count) {
+                    callabck(err, count);
+                }
+            )
+        },
+        function(callback) {
+            User.update(
+                {
+                    _id: req.params._id,
+                    followers: { $ne: req.user._id }
+                },
+                {
+                    $push: {followers: req.user._id }
+                }, function(err, count) {
+                    callabck(err, count);
+                }
+            )
+        }
+    ], function(err, results) {
+        if (err) return next(err);
+        res.json("Success");
+    });
+});
+
+router.post('/unfollow/:id', (req, res, next) => {
+    async.parallel([
+        function(callback) {
+            User.update(
+                {
+                    _id: req.user._id,
+                },
+                {
+                    $pull: {following: req.params.id }
+                }, function(err, count) {
+                    callabck(err, count);
+                }
+            )
+        },
+        function(callback) {
+            User.update(
+                {
+                    _id: req.params._id,
+                },
+                {
+                    $pull: {followers: req.user._id }
+                }, function(err, count) {
+                    callabck(err, count);
+                }
+            )
+        }
+    ], function(err, results) {
+        if (err) return next(err);
+        res.json("Success");
+    });
 });
 
 module.exports = router; //exports this url so that server.js can use it properly
