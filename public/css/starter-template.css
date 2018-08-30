@@ -1,7 +1,8 @@
 body {
-    background-image: url("4685.jpg");
-    background-size: 100%;
     color: whitesmoke;
+    background: #757F9A; 
+    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);
+    background: linear-gradient(to right, #D7DDE8, #757F9A); 
 }
 .starter-template {
     padding: 40px 15px;
@@ -29,7 +30,7 @@ a.nav-link {
     color: whitesmoke;
 }
 a.nav-link:hover {
-    color: tomato;
+    color: #181818;
 }
 h1 {
     color: black;
@@ -47,4 +48,21 @@ h1 {
 h4 {
     color: black;
     font-weight: bolder;
+}
+
+h2 {
+    font-family: 'Oxygen', sans-serif;
+    color: whitesmoke;
+}
+
+ul {
+    margin-left: 15em;
+}
+
+li {
+    margin-left: 4em;
+}
+
+a {
+    font-family: 'Oxygen', sans-serif;
 }
