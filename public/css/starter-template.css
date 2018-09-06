@@ -6,18 +6,7 @@ body {
     color: whitesmoke;
     position: relative;
     background-image: url("12345.jpg");
-    /* Full height */
     height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    /*background: #c0c0aa;
-    background: -webkit-linear-gradient(to right, #1cefff, #c0c0aa);
-    background: linear-gradient(to right, #1cefff, #c0c0aa);*/
-
 }
 .starter-template {
     padding: 40px 15px;
