@@ -2,6 +2,7 @@ const mongoose = require('mongoose'); //mongoose libs that help us to create sch
 const bcrypt = require('bcrypt-nodejs'); //calls the build in node js encrypter module for password
 const crypto = require('crypto'); //this is for photo layer cryptography algorithm
 const Schema = mongoose.Schema; //to access schema we make local files
+const mongooseAlgolia = require('mongoose-algolia');
 
 //this is a schema that is created schema is basically users 
 const UserSchema = new Schema({
@@ -47,5 +48,33 @@ UserSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password); //this compares the user entered password with the stored data base password   
 }
 
+UserSchema.plugin(mongooseAlgolia,{
+    appId: 'V15HLPY42G',
+    apiKey: '1713673876779c1b651a592c6529da0c',
+    indexName: 'UserSchema', //The name of the index in Algolia, you can also pass in a function
+    selector: 'email name tweets', //You can decide which field that are getting synced to Algolia (same as selector in mongoose)
+    populate: {
+      path: '',
+      select: 'name'
+    },
+    defaults: {
+      author: 'unknown'
+    },
+    mappings: {
+      title: function(value) {
+        return `${value}`
+      }
+    },
+    debug: true // Default: false -> If true operations are logged out in your console
+  });
+  
+  
+  let Model = mongoose.model('User', UserSchema);
+  
+  Model.SyncToAlgolia(); //Clears the Algolia index for this schema and synchronizes all documents to Algolia (based on the settings defined in your plugin settings)
+  Model.SetAlgoliaSettings({
+    searchableAttributes: ['name','email'] //Sets the settings for this schema, see [Algolia's Index settings parameters](https://www.algolia.com/doc/api-client/javascript/settings#set-settings) for more info.
+  });
 
-module.exports = mongoose.model('User',UserSchema); //helps to export schemas so as to use it in different pages
+
+module.exports = Model; //helps to export schemas so as to use it in different pages

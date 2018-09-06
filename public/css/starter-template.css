@@ -1,8 +1,12 @@
 body {
     color: whitesmoke;
-    background: #757F9A; 
-    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A);
-    background: linear-gradient(to right, #D7DDE8, #757F9A); 
+    background-image: url("12345.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /*background: #c0c0aa;
+    background: -webkit-linear-gradient(to right, #1cefff, #c0c0aa);
+    background: linear-gradient(to right, #1cefff, #c0c0aa);*/
+
 }
 .starter-template {
     padding: 40px 15px;
@@ -27,7 +31,7 @@ body {
     font-size: 1.4em;
 }
 a.nav-link {
-    color: whitesmoke;
+    color: black;
 }
 a.nav-link:hover {
     color: #181818;
@@ -56,11 +60,11 @@ h2 {
 }
 
 ul {
-    margin-left: 15em;
+    margin-left: 16em;
 }
 
 li {
-    margin-left: 4em;
+    margin-left: 2em;
 }
 
 a {
